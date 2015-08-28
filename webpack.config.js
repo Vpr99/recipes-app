@@ -3,7 +3,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 /* PostCSS Plugins */
-var canadianStylesheets = require('postcss-canadian-stylesheets');
+
 
 var ROOT_PATH = path.resolve(__dirname);
 
@@ -23,7 +23,7 @@ module.exports = {
         ]
     },
     postcss: function () {
-        return [canadianStylesheets];
+        return [];
     },
     devServer: {
         colors: true,
