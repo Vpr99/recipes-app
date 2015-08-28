@@ -2,6 +2,9 @@ var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
+/* PostCSS Plugins */
+var canadianStylesheets = require('postcss-canadian-stylesheets');
+
 var ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
@@ -14,10 +17,13 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loaders: ['style', 'css'],
+                loader: "style-loader!css-loader!postcss-loader",
                 include: path.resolve(ROOT_PATH, 'app')
             }
         ]
+    },
+    postcss: function () {
+        return [canadianStylesheets];
     },
     devServer: {
         colors: true,
