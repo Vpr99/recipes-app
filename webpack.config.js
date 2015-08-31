@@ -34,18 +34,18 @@ var common = {
         extensions: ['', '.js', '.jsx', '.json', '.coffee']
     },
     postcss: function () {
-      return [
-        postcssImport({
-              onImport: function (files) {
-                  files.forEach(this.addDependency);
-              }.bind(this)
-          }),
-          postcssMixins(),
-          postcssNested(),
-          postcssVars(),
-          postcssExtend(),
-          postcssLost()
-      ];
+        return [
+            postcssImport({
+                  onImport: function (files) {
+                      files.forEach(this.addDependency);
+                  }.bind(this)
+              }),
+              postcssMixins(),
+              postcssNested(),
+              postcssVars(),
+              postcssExtend(),
+              postcssLost()
+        ];
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
