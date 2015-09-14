@@ -1,20 +1,22 @@
-var HtmlwebpackPlugin = require('html-webpack-plugin');
-var merge = require('webpack-merge');
-var path = require('path');
-var webpack = require('webpack');
+var HtmlwebpackPlugin = require('html-webpack-plugin'),
+    merge = require('webpack-merge'),
+    path = require('path'),
+    webpack = require('webpack');
 
 /* PostCSS Plugins */
-var postcssImport = require('postcss-import');
-var postcssNested = require('postcss-nested');
-var postcssExtend = require('postcss-simple-extend');
-var postcssVars = require('postcss-simple-vars');
-var postcssMixins = require('postcss-mixins');
-var postcssLost = require('lost');
+var postcssImport = require('postcss-import'),
+    postcssNested = require('postcss-nested'),
+    postcssExtend = require('postcss-simple-extend'),
+    postcssVars = require('postcss-simple-vars'),
+    postcssMixins = require('postcss-mixins'),
+    postcssLost = require('lost'),
+    postcssRucksack = require('rucksack-css');
 
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 
 var common = {
+
     entry: path.resolve(ROOT_PATH, 'app/main.jsx'),
     output: {
         path: path.resolve(ROOT_PATH, 'build'),
@@ -44,6 +46,7 @@ var common = {
               postcssNested(),
               postcssVars(),
               postcssExtend(),
+              postcssRucksack(),
               postcssLost()
         ];
     },
@@ -57,12 +60,12 @@ var common = {
 
 if(TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
-        devtool: 'eval-source-map',
+        devtool: 'source-map',
         module: {
             loaders: [
                 {
                     test: /\.jsx?$/,
-                    loaders: ['react-hot', 'babel'],
+                    loaders: ['babel', 'react-hot'],
                     include: path.resolve(ROOT_PATH, 'app')
                 }
             ]
