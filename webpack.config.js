@@ -65,7 +65,7 @@ if(TARGET === 'start' || !TARGET) {
             loaders: [
                 {
                     test: /\.jsx?$/,
-                    loaders: ['babel', 'react-hot'],
+                    loaders: ['react-hot', 'babel'],
                     include: path.resolve(ROOT_PATH, 'app')
                 }
             ]

@@ -7,13 +7,11 @@ var ingredients = function(locals) {
     var inputs = locals.inputs;
 
     return (
-        <fieldset className="form-struct ingredient">
-            <div className="form-row quantity">
-                {inputs.quantity}
-            </div>
-            <div className="form-row item">
-                {inputs.item}
-            </div>
+        <fieldset className="IngredientForm">
+            <div className="IngredientForm-row">{inputs.quantity}</div>
+            <div className="IngredientForm-row">{inputs.unit}</div>
+            <div className="IngredientForm-row">{inputs.name}</div>
+            <div className="IngredientForm-row">{inputs.instruction}</div>
         </fieldset>
     );
 };

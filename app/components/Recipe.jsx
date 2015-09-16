@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 _.mixin(require('underscore.inflections'));
 
-export default class Recipe extends React.Component {
+var Recipe = React.createClass({
     render() {
         var steps = [];
         _.each(this.props.data.steps, function(step) {
@@ -48,4 +48,6 @@ export default class Recipe extends React.Component {
             </div>
         );
     }
-}
+});
+
+module.exports = Recipe;
