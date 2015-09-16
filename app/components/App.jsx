@@ -1,25 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Parse from 'parse';
+import ParseReact from 'parse-react';
+var ParseComponent = ParseReact.Component(React);
 
 import Recipe from './Recipe.jsx';
 import RecipeCreator from './RecipeCreator.jsx';
 
-import RecipeData from '../data/RecipeData.jsx';
-
 var App = React.createClass({
+    mixins: [ParseReact.Mixin],
+
+    observe(props, state) {
+        return {
+            items: new Parse.Query('Recipe').descending('recipe_name')
+        };
+    },
+
     render() {
         return (
             <div>
-                <ul>{RecipeData.map(this.renderRecipe)}</ul>
+                <ul>{this.data.items.map(this.renderRecipe)}</ul>
                 <RecipeCreator />
             </div>
-
         );
     },
 
     renderRecipe(recipe) {
         return(
-            <li key={recipe.id}>
+            <li key={recipe.objectId}>
                 <Recipe data={recipe} />
             </li>
         )

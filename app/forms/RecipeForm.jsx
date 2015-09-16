@@ -83,18 +83,13 @@ var list = function(locals) {
 };
 
 module.exports = {
-  auto: 'none',
+  auto: 'placeholders',
+  disableOrder: true,
   templates: {
     struct: struct,
     list: list
   },
   fields: {
-    description: {
-      type: "textarea"
-    },
-    directions: {
-      type: "textarea"
-    },
     ingredients: {
       config: { type: "ingredients" }
     }

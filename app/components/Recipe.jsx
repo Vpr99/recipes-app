@@ -5,7 +5,7 @@ _.mixin(require('underscore.inflections'));
 var Recipe = React.createClass({
     render() {
         var steps = [];
-        _.each(this.props.data.steps, function(step) {
+        _.each(this.props.data.directions, function(step) {
             steps.push(<li>{step}</li>)
         })
 
@@ -17,7 +17,7 @@ var Recipe = React.createClass({
 
             /* Pluralize ingredients without a unit of measurement */
             if(!ingredient.unit && ingredient.quantity > 1) {
-                ingredient.name += "s";
+                ingredient.ingredient_name += "s";
             }
             /* Then pluralize the remaining ingredients. */
             else if(ingredient.quantity > 1) {
@@ -31,14 +31,14 @@ var Recipe = React.createClass({
 
             /* Add the ingredient to the array */
             ingredients.push(
-                <li>{ingredient.quantity} {ingredient.unit} {ingredient.name}{ingredientInstruction}</li>
+                <li>{ingredient.quantity} {ingredient.unit} {ingredient.ingredient_name}{ingredientInstruction}</li>
             )
 
         })
 
         return (
             <div className="Recipe">
-                <h2 className="Recipe-title">{this.props.data.title}</h2>
+                <h2 className="Recipe-title">{this.props.data.recipe_name}</h2>
                 <div className="Recipe-meta">
                     <p className="Recipe-servings">Servings: {this.props.data.servings}</p>
                     <p className="Recipe-time">Time Taken: {this.props.data.time}</p>
