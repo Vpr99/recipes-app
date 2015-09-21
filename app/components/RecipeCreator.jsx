@@ -28,17 +28,25 @@ var RecipeCreator = React.createClass({
     },
 
     addRecipe: function(e) {
+        var value = this.refs.form.getValue();
         e.preventDefault();
 
-        var value = this.refs.form.getValue();
+        if (!value) { console.log("Failed."); }
+        else {
+            ParseReact.Mutation.Create('Recipe', {
+                recipe_name: value['recipe_name'],
+                slug: value['slug'],
+                servings: value['servings'],
+                time: value['time'],
+                ingredients: value['ingredients'],
+                directions: value['directions']
+            }).dispatch();
 
-        ParseReact.Mutation.Create('Recipe', {
-            recipe_name: value['recipe_name'],
-            servings: value['servings'],
-            time: value['time'],
-            ingredients: value['ingredients'],
-            directions: value['directions']
-        }).dispatch();
+            console.log("Succeeded.");
+
+            /* Empties the form */
+            // this.setState({value: null});
+        }
     }
 });
 

@@ -33,6 +33,7 @@
     "parse-react": "^0.5.0",
     "react": "^0.14.0-rc1",
     "react-dom": "^0.14.0-rc1",
+    "react-router": "^1.0.0-rc1",
     "tcomb-form": "^0.7.1",
     "underscore": "^1.8.3",
     "underscore.inflections": "^0.2.1"

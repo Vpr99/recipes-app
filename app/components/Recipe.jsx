@@ -1,17 +1,65 @@
 import React from 'react';
 import _ from 'underscore';
+// import Parse from 'parse';
+// import ParseReact from 'parse-react';
 _.mixin(require('underscore.inflections'));
+// var ParseComponent = ParseReact.Component(React);
 
-var Recipe = React.createClass({
+const Recipe = React.createClass({
+    // mixins: [ParseReact.Mixin],
+    //
+    // getInitialState() {
+    //     return {
+    //
+    //     }
+    // }
+/*
+    componentDidMount: function() {
+        $.get(this.props.source, function(result) {
+          var lastGist = result[0];
+          if (this.isMounted()) {
+            this.setState({
+              username: lastGist.owner.login,
+              lastGistUrl: lastGist.html_url
+            });
+          }
+        }.bind(this));
+      },
+*/
+
+    //
+    // componentWillMount() {
+    //     var recipe = new Parse.Query('Recipe');
+    //     recipe.equalTo("slug", this.props.params.recipeSlug);
+    //     recipe.find({
+    //     success: function(results) {
+    //         console.log(results);
+    //         // Do something with the returned Parse.Object values
+    //     },
+    //         error: function(error) {
+    //             alert("Error: " + error.code + " " + error.message);
+    //         }
+    //     });
+    // },
+    //
+    // observe(props, state) {
+    //     return {
+    //         recipe: new Parse.Query('Recipe').equalTo("slug", this.props.params.recipeSlug)
+    //     };
+    // },
+
     render() {
+        var recipe = this.data.recipe;
+        console.log(recipe);
+
         var steps = [];
-        _.each(this.props.data.directions, function(step) {
+        _.each(recipe  .directions, function(step) {
             steps.push(<li>{step}</li>)
         })
 
         /* Process & store the ingredients */
         var ingredients = [];
-        _.each(this.props.data.ingredients, function(ingredient) {
+        _.each(recipe.ingredients, function(ingredient) {
 
             var ingredientInstruction;
 
@@ -38,10 +86,10 @@ var Recipe = React.createClass({
 
         return (
             <div className="Recipe">
-                <h2 className="Recipe-title">{this.props.data.recipe_name}</h2>
+                <h2 className="Recipe-title">{recipe.recipe_name}</h2>
                 <div className="Recipe-meta">
-                    <p className="Recipe-servings">Servings: {this.props.data.servings}</p>
-                    <p className="Recipe-time">Time Taken: {this.props.data.time}</p>
+                    <p className="Recipe-servings">Servings: {recipe.servings}</p>
+                    <p className="Recipe-time">Time Taken: {recipe.time}</p>
                 </div>
                 <ul className="Recipe-steps">{steps}</ul>
                 <ul className="Recipe-ingredients">{ingredients}</ul>
