@@ -4,6 +4,12 @@ import Parse from 'parse';
 import ParseReact from 'parse-react';
 _.mixin(require('underscore.inflections'));
 
+/**
+ * @TODO:
+ * Refactor using lodash instead of _
+ */
+
+
 const Recipe = React.createClass({
     mixins: [ParseReact.Mixin],
 
