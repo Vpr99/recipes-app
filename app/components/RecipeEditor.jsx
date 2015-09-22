@@ -52,7 +52,7 @@ const RecipeEditor = React.createClass({
 
         if (!value) { console.log("Failed."); }
         else {
-            ParseReact.Mutation.Create('Recipe', {
+            ParseReact.Mutation.Set(this.data.recipe[0], {
                 recipe_name: value['recipe_name'],
                 slug: value['slug'],
                 servings: value['servings'],
