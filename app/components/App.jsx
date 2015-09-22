@@ -6,6 +6,7 @@ const App = React.createClass({
         return (
             <div>
                 <h1>Recipe App</h1>
+                <Link to="/recipe/add">Add Recipe</Link>
                 <Link to="/about">About</Link>
                 <Link to="/">Recipes</Link>
                 {this.props.children}

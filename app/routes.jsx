@@ -1,7 +1,10 @@
 import App from './components/App.jsx';
 import About from './components/About.jsx';
-import RecipeList from './components/RecipeList.jsx';
 import Recipe from './components/Recipe.jsx';
+import RecipeCreator from './components/RecipeCreator.jsx';
+import RecipeEditor from './components/RecipeEditor.jsx';
+import RecipeList from './components/RecipeList.jsx';
+
 
 const routeConfig = [
   { path: '/',
@@ -9,7 +12,9 @@ const routeConfig = [
     indexRoute: { component: RecipeList },
     childRoutes: [
       { path: 'about', component: About },
-      { path: 'recipe/:recipeSlug', component: Recipe }
+      { path: 'recipe/add', component: RecipeCreator },
+      { path: 'recipe/:recipeSlug', component: Recipe },
+      { path: 'recipe/:recipeSlug/edit', component: RecipeEditor }
     ]
   }
 ]
