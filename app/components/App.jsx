@@ -1,7 +1,18 @@
 import React from 'react';
 import { IndexRoute, Router, Route, Link } from 'react-router'
 
-const App = React.createClass({
+import Parse from 'parse';
+import ParseReact from 'parse-react';
+
+let App = React.createClass({
+    mixins: [ParseReact.Mixin],
+
+    observe(props, state) {
+        return {
+            recipes: new Parse.Query('Recipe').descending('recipe_name')
+        };
+    },
+
     render() {
         return (
             <div>
@@ -9,7 +20,7 @@ const App = React.createClass({
                 <Link to="/recipe/add">Add Recipe</Link>
                 <Link to="/about">About</Link>
                 <Link to="/">Recipes</Link>
-                {this.props.children}
+                {React.cloneElement(this.props.children, {recipeData: this.data.recipes })}
             </div>
         );
     }

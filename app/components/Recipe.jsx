@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'underscore';
-import Parse from 'parse';
-import ParseReact from 'parse-react';
-_.mixin(require('underscore.inflections'));
+import inflection from 'underscore.inflection';
+_.mixin(inflection);
+// import Parse from 'parse';
+// import ParseReact from 'parse-react';
 
 /**
  * @TODO:
@@ -10,23 +11,25 @@ _.mixin(require('underscore.inflections'));
  */
 
 
-const Recipe = React.createClass({
-    mixins: [ParseReact.Mixin],
+let Recipe = React.createClass({
+    // mixins: [ParseReact.Mixin],
 
     /* Go find the recipe in Parse */
-    observe(props, state) {
-        return {
-            recipe: new Parse.Query('Recipe').equalTo("slug", this.props.params.recipeSlug)
-        };
-    },
+    // observe(props, state) {
+    //     return {
+    //         recipe: new Parse.Query('Recipe').equalTo("slug", this.props.params.recipeSlug)
+    //     };
+    // },
 
     render() {
         var content = (
             <div>No Recipe Found.</div>
         );
+        // if (this.data.recipe.length) {
+        if (this.props.recipeData.length) {
 
-        if (this.data.recipe.length) {
-            var recipe = this.data.recipe[0];
+            var recipe = _.findWhere(this.props.recipeData, {slug: this.props.params.recipeSlug});
+            // var recipe = this.data.recipe[0];
 
             var steps = [];
             _.each(recipe  .directions, function(step) {
@@ -73,7 +76,7 @@ const Recipe = React.createClass({
             )
         }
 
-        else if(this.pendingQueries().length) {
+        else {
             content = (
                 <div className='loading'>Loading</div>
             )

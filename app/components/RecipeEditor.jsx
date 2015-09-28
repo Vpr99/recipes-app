@@ -2,28 +2,22 @@ import React from 'react';
 import Parse from 'parse';
 import ParseReact from 'parse-react';
 
+import _ from 'underscore';
+
 /* Forms */
 import t from 'tcomb-form';
 var Form = t.form.Form;
 import Recipe from '../schemas/recipe.jsx';
 import RecipeForm from '../forms/RecipeForm.jsx';
 
-const RecipeEditor = React.createClass({
-    mixins: [ParseReact.Mixin],
-
-    observe(props, state) {
-        return {
-            recipe: new Parse.Query('Recipe').equalTo("slug", this.props.params.recipeSlug)
-        };
-    },
-
+let RecipeEditor = React.createClass({
     render() {
         var content = (
             <div>No Recipe Found.</div>
         );
 
-        if (this.data.recipe.length) {
-            var recipe = this.data.recipe[0];
+        if (this.props.recipeData.length) {
+            var recipe = _.findWhere(this.props.recipeData, {slug: this.props.params.recipeSlug});
 
             content = (
                 <form className="RecipeCreator RecipeCreator--inline" onSubmit={this.addRecipe}>
@@ -33,7 +27,7 @@ const RecipeEditor = React.createClass({
             )
         }
 
-        else if(this.pendingQueries().length) {
+        else {
             content = (
                 <div className='loading'>Loading...</div>
             )

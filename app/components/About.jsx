@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About = React.createClass({
+let About = React.createClass({
     render() {
         return (
             <p><strong>About</strong></p>

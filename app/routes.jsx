@@ -6,7 +6,7 @@ import RecipeEditor from './components/RecipeEditor.jsx';
 import RecipeList from './components/RecipeList.jsx';
 
 
-const routeConfig = [
+let routeConfig = [
   { path: '/',
     component: App,
     indexRoute: { component: RecipeList },
