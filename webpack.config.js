@@ -7,6 +7,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin'),
 var postcssImport = require('postcss-import'),
     postcssNested = require('postcss-nested'),
     postcssExtend = require('postcss-simple-extend'),
+    postcssFonts = require('postcss-font-magician'),
     postcssVars = require('postcss-simple-vars'),
     postcssMixins = require('postcss-mixins'),
     postcssLost = require('lost'),
@@ -41,6 +42,9 @@ var common = {
                   onImport: function (files) {
                       files.forEach(this.addDependency);
                   }.bind(this)
+              }),
+              postcssFonts({
+                  hosted: './fonts'
               }),
               postcssMixins(),
               postcssNested(),
