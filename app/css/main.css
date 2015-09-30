@@ -1,0 +1,25 @@
+/* Settings: Global project settings & configurations */
+@import 'settings/colors';
+@import 'settings/fonts';
+@import 'settings/global';
+@import 'settings/grid';
+
+/* Tools: Globally available tools, helpers & mixins */
+@import 'tools/mixins';
+@import 'tools/placeholders';
+
+/* Generic: Ground Zero Styles - Low Specificity & far-reaching */
+@import 'normalize.css/normalize';
+@import 'generic/main';
+
+/* Elements: Unclassed HTML Elements & Type Selectors */
+@import 'elements/page';
+@import 'elements/typography';
+
+/* Ojbects: Unstyled Design Patterns */
+@import 'objects/layout';
+
+/* Components: Designed & styled pieces of UI */
+
+/* Trumps: Overrides, Helpers & Utilities - 1 DOM Element at a time */
+@import 'trumps/shame';
