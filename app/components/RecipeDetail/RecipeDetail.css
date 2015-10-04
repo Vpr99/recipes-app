@@ -1,0 +1,13 @@
+.RecipeDetail {
+    clear: fix;
+
+    &-ingredientList {
+        lost-column: 1/3 0;
+        padding: 0;
+    }
+
+    &-stepList {
+        lost-column: 2/3 0;
+        padding: 0;
+    }
+}

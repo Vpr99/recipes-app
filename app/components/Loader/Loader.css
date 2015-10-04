@@ -1,0 +1,41 @@
+$loader-size: 80px;
+
+@define-placeholder loaderConstruction {
+    clip: rect(0, $loader-size, $loader-size, calc($loader-size/2));
+    position: absolute;
+    size: $loader-size;
+}
+
+.Loader {
+    margin: 2rem auto;
+    position: relative;
+    size: $loader-size;
+}
+
+.Loader-inner {
+    @extend loaderConstruction;
+    animation: animate 1.3s linear infinite;
+
+    &:after {
+        @extend loaderConstruction;
+        animation: animate2 1.3s ease-in-out-quad infinite;
+        border-radius: 50%;
+        content:'';
+    }
+}
+
+@keyframes animate {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(200deg) }
+}
+@keyframes animate2 {
+    0% {
+        box-shadow: inset #222 0 0 0 2px;
+        transform: rotate(-160deg);
+    }
+    50% { box-shadow: inset #222 0 0 0 6px; }
+    100% {
+        box-shadow: inset #222 0 0 0 2px;
+        transform: rotate(160deg);
+    }
+}

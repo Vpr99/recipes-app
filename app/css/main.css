@@ -22,6 +22,7 @@
 /* Components: Designed & styled pieces of UI */
 @import '../components/Footer/Footer.css';
 @import '../components/Header/Header.css';
+@import '../components/Loader/Loader.css';
 @import '../components/RecipeDetail/RecipeDetail.css';
 @import '../components/RecipeListItem/RecipeListItem.css';
 

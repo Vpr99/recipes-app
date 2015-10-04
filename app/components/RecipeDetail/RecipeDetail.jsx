@@ -1,19 +1,19 @@
 import React from 'react';
 
+import Loader from '../Loader/Loader.jsx';
+
 import uuid from 'node-uuid';
 import fraction from 'fraction.js';
-
 import _ from 'underscore';
 import inflection from 'underscore.inflection';
 _.mixin(inflection);
 
 let RecipeDetail = React.createClass({
     render() {
-
         /* Failure State: No Recipe Found. */
         var content = (<div>No Recipe Found.</div>);
 
-
+        /* Success State: Render the Recipe! */
         if (this.props.recipeData.length) {
             var recipe = _.findWhere(this.props.recipeData, {slug: this.props.params.recipeSlug});
 
@@ -43,6 +43,7 @@ let RecipeDetail = React.createClass({
                     ingredientInstruction = (<span className="Recipe-ingredient--instruction">, {ingredient.instruction}</span>)
                 }
 
+                /* Convert the unit quantity to a fraction */
                 var quantity = new fraction(ingredient.quantity);
                 var fractionQuantity = quantity.toFraction(true);
 
@@ -60,20 +61,22 @@ let RecipeDetail = React.createClass({
                         <p className="RecipeDetail-servings">Servings: {recipe.servings}</p>
                         <p className="RecipeDetail-time">Time Taken: {recipe.time}</p>
                     </div>
-                    <ul className="RecipeDetail-ingredients">{ingredients}</ul>
-                    <ul className="RecipeDetail-steps">{steps}</ul>
+                    <ul className="RecipeDetail-ingredientList">{ingredients}</ul>
+                    <ol className="RecipeDetail-stepList">{steps}</ol>
                 </div>
             )
         }
 
         /*  */
         else {
-            content = (
-                <div className='loading'>Loading</div>
-            )
+            content = (<Loader />)
         }
 
-        return (<div>{content}</div>);
+        return (
+            <div>
+                {content}
+            </div>
+        );
     }
 });
 

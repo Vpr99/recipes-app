@@ -12,7 +12,9 @@ var postcssImport = require('postcss-import'),
     postcssVars = require('postcss-simple-vars'),
     postcssMixins = require('postcss-mixins'),
     postcssLost = require('lost'),
-    postcssRucksack = require('rucksack-css');
+    postcssRucksack = require('rucksack-css'),
+    postcssSize = require('postcss-size'),
+    autoprefixer = require('autoprefixer');
 
 var TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
@@ -53,7 +55,9 @@ var common = {
               postcssVars(),
               postcssExtend(),
               postcssRucksack(),
-              postcssLost()
+              postcssLost(),
+              postcssSize(),
+              autoprefixer({ browsers: ['last 2 versions'] })
         ];
     },
     plugins: [
