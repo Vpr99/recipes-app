@@ -1,25 +1,28 @@
 /* Settings: Global project settings & configurations */
-@import 'settings/colors';
+/*@import 'settings/colors';
 @import 'settings/fonts';
 @import 'settings/global';
-@import 'settings/grid';
+@import 'settings/grid';*/
 
 /* Tools: Globally available tools, helpers & mixins */
-@import 'tools/mixins';
-@import 'tools/placeholders';
+/*@import 'tools/mixins';
+@import 'tools/placeholders';*/
 
 /* Generic: Ground Zero Styles - Low Specificity & far-reaching */
 @import 'normalize.css/normalize';
 @import 'generic/main';
 
 /* Elements: Unclassed HTML Elements & Type Selectors */
-@import 'elements/page';
+/*@import 'elements/page';*/
 @import 'elements/typography';
 
 /* Ojbects: Unstyled Design Patterns */
 @import 'objects/layout';
 
 /* Components: Designed & styled pieces of UI */
+@import '../components/Footer/Footer.css';
+@import '../components/Header/Header.css';
+@import '../components/RecipeListItem/RecipeListItem.css';
 
 /* Trumps: Overrides, Helpers & Utilities - 1 DOM Element at a time */
-@import 'trumps/shame';
+/*@import 'trumps/shame';*/

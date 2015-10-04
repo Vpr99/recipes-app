@@ -5,8 +5,8 @@ import ParseReact from 'parse-react';
 /* Forms */
 import t from 'tcomb-form';
 var Form = t.form.Form;
-import Recipe from '../schemas/recipe.jsx';
-import RecipeForm from '../forms/RecipeForm.jsx';
+import Recipe from '../../schemas/recipe.jsx';
+import RecipeForm from '../../forms/RecipeForm.jsx';
 
 var RecipeCreator = React.createClass({
     getInitialState: function() {
@@ -35,6 +35,7 @@ var RecipeCreator = React.createClass({
         else {
             ParseReact.Mutation.Create('Recipe', {
                 recipe_name: value['recipe_name'],
+                category: value['category'],
                 slug: value['slug'],
                 servings: value['servings'],
                 time: value['time'],

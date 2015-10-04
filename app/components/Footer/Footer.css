@@ -1,0 +1,7 @@
+.Footer {
+    border-top: 1px solid #999;
+    clear: fix;
+    font-size: 0.9rem;
+    &-attribution { float: left; }
+    &-tools { float: right; }
+}

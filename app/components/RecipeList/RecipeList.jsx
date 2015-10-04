@@ -2,7 +2,7 @@ import React from 'react';
 import Parse from 'parse';
 import ParseReact from 'parse-react';
 
-import RecipeListItem from './RecipeListItem.jsx';
+import RecipeListItem from '../RecipeListItem/RecipeListItem.jsx';
 
 import { IndexRoute, Router, Route, Link } from 'react-router'
 
@@ -17,13 +17,15 @@ let RecipeList = React.createClass({
 
     render() {
         return(
-            <ul>
+            <div className="RecipeList">
                 {this.data.recipes.map(recipe => (
-                    <li className={recipe.objectId} key={recipe.objectId}>
-                        <Link to={`/recipe/${recipe.slug}`}><RecipeListItem data={recipe} /></Link>
-                    </li>
+                    <div key={recipe.objectId}>
+                        <Link to={`/recipe/${recipe.slug}`}>
+                            <RecipeListItem data={recipe} />
+                        </Link>
+                    </div>
                 ))}
-            </ul>
+            </div>
         )
     }
 });

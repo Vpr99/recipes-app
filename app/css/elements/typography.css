@@ -1,0 +1,12 @@
+@define-placeholder hug {
+    margin-bottom: 0;
+}
+
+a {
+    color: #4B4541;
+    text-decoration: none;
+
+    &:hover {
+        color: #1E1C1B;
+    }
+}

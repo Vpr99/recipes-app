@@ -7,8 +7,8 @@ import _ from 'underscore';
 /* Forms */
 import t from 'tcomb-form';
 var Form = t.form.Form;
-import Recipe from '../schemas/recipe.jsx';
-import RecipeForm from '../forms/RecipeForm.jsx';
+import Recipe from '../../schemas/recipe.jsx';
+import RecipeForm from '../../forms/RecipeForm.jsx';
 
 let RecipeEditor = React.createClass({
     render() {

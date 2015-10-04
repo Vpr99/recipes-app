@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import uuid from 'node-uuid';
 import inflection from 'underscore.inflection';
 _.mixin(inflection);
 // import Parse from 'parse';
@@ -33,7 +34,7 @@ let Recipe = React.createClass({
 
             var steps = [];
             _.each(recipe  .directions, function(step) {
-                steps.push(<li>{step}</li>)
+                steps.push(<li key={uuid.v4()}>{step}</li>)
             })
 
             /* Process & store the ingredients */
@@ -58,7 +59,7 @@ let Recipe = React.createClass({
 
                 /* Add the ingredient to the array */
                 ingredients.push(
-                    <li>{ingredient.quantity} {ingredient.unit} {ingredient.ingredient_name}{ingredientInstruction}</li>
+                    <li key={uuid.v4()}>{ingredient.quantity} {ingredient.unit} {ingredient.ingredient_name}{ingredientInstruction}</li>
                 )
 
             })
