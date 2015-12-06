@@ -1,7 +1,9 @@
 var HtmlwebpackPlugin = require('html-webpack-plugin'),
     merge = require('webpack-merge'),
     path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    Clean = require('clean-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /* PostCSS Plugins */
 var postcssImport = require('postcss-import'),
@@ -16,28 +18,25 @@ var postcssImport = require('postcss-import'),
     postcssSize = require('postcss-size'),
     autoprefixer = require('autoprefixer');
 
-var TARGET = process.env.npm_lifecycle_event;
+var pkg = require('./package.json');
+
+const TARGET = process.env.npm_lifecycle_event;
 var ROOT_PATH = path.resolve(__dirname);
 
 var common = {
-
     entry: path.resolve(ROOT_PATH, 'app/main.jsx'),
-    output: {
-        path: path.resolve(ROOT_PATH, 'build'),
-        filename: '/bundle.js'
+    resolve: {
+        /* Resolves extensions to require('file') instead of require('file.js') */
+        extensions: ['', '.js', '.jsx', '.json', '.coffee']
     },
     module: {
         loaders: [
             {
-                test: /\.css$/,
-                loader: "style-loader!css-loader?minimize!postcss-loader",
+                test: /\.jsx?$/,
+                loaders: ['babel'],
                 include: path.resolve(ROOT_PATH, 'app')
             }
         ]
-    },
-    resolve: {
-        /* Resolves extensions to require('file') instead of require('file.js') */
-        extensions: ['', '.js', '.jsx', '.json', '.coffee']
     },
     postcss: function () {
         return [
@@ -61,7 +60,6 @@ var common = {
         ];
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
         new HtmlwebpackPlugin({
             title: 'Recipes App'
         })
@@ -70,12 +68,12 @@ var common = {
 
 if(TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
-        devtool: 'source-map',
+        devtool: 'eval-source-map',
         module: {
             loaders: [
                 {
-                    test: /\.jsx?$/,
-                    loaders: ['react-hot', 'babel'],
+                    test: /\.css$/,
+                    loader: "style-loader!css-loader?minimize!postcss-loader",
                     include: path.resolve(ROOT_PATH, 'app')
                 }
             ]
@@ -84,10 +82,54 @@ if(TARGET === 'start' || !TARGET) {
             historyApiFallback: true,
             hot: true,
             inline: true,
-            progress: true
+            progress: true,
+            // display only errors to reduce the amount of output
+            stats: 'errors-only',
+
+            // parse host and port from env so this is easy
+            // to customize
+            host: process.env.HOST,
+            port: process.env.PORT
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin()
+        ]
+    });
+}
+
+if(TARGET === 'build' || TARGET === 'stats') {
+    module.exports = merge(common, {
+        devtool: 'source-map',
+        entry: {
+            app: path.resolve(ROOT_PATH, 'app/main.jsx'),
+            vendor: Object.keys(pkg.dependencies)
+        },
+        output: {
+            path: path.resolve(ROOT_PATH, 'build'),
+            filename: '[name].[hash].js?'
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.css$/,
+                    loader: ExtractTextPlugin.extract('style-loader', 'css-loader?minimize!postcss-loader'),
+                    include: path.resolve(ROOT_PATH, 'app')
+                }
+            ]
+        },
+        plugins: [
+            new Clean(['build']),
+            new ExtractTextPlugin('styles.[hash].css'),
+            new webpack.optimize.CommonsChunkPlugin(
+                'vendor',
+                '[name].[hash].js'
+            ),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: { warnings: false }
+            }),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('production')
+            })
         ]
     });
 }
