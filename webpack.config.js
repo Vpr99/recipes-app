@@ -35,28 +35,38 @@ var common = {
                 test: /\.jsx?$/,
                 loaders: ['babel'],
                 include: path.resolve(ROOT_PATH, 'app')
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
             }
         ]
     },
     postcss: function () {
         return [
             postcssImport({
-                  onImport: function (files) {
-                      files.forEach(this.addDependency);
-                  }.bind(this)
-              }),
-              postcssFonts({
-                  hosted: './fonts'
-              }),
-              postcssMixins(),
-              postcssBEM(),
-              postcssNested(),
-              postcssVars(),
-              postcssExtend(),
-              postcssRucksack(),
-              postcssLost(),
-              postcssSize(),
-              autoprefixer({ browsers: ['last 2 versions'] })
+                onImport: function (files) {
+                    files.forEach(this.addDependency);
+                }.bind(this)
+            }),
+            postcssFonts({
+                hosted: './fonts',
+                aliases: {
+                    'sans-serif': 'Source Sans Pro'
+                }
+            }),
+            postcssMixins(),
+            postcssBEM(),
+            postcssNested(),
+            postcssVars(),
+            postcssExtend(),
+            postcssRucksack(),
+            postcssLost(),
+            postcssSize(),
+            autoprefixer({ browsers: ['last 2 versions'] })
         ];
     },
     plugins: [
@@ -77,6 +87,11 @@ if(TARGET === 'start' || !TARGET) {
                     include: path.resolve(ROOT_PATH, 'app')
                 }
             ]
+        },
+        output: {
+            path: path.resolve(ROOT_PATH, 'build'),
+            publicPath: "http://localhost:8080/",
+            filename: 'bundle.js'
         },
         devServer: {
             historyApiFallback: true,
@@ -106,6 +121,7 @@ if(TARGET === 'build' || TARGET === 'stats') {
         },
         output: {
             path: path.resolve(ROOT_PATH, 'build'),
+            publicPath: "http://recipes.ericskram.com/",
             filename: '[name].[hash].js?'
         },
         module: {

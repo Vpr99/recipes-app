@@ -1,6 +1,6 @@
 .RecipeListItem {
 
     &-title {
-
+        font-weight: 600;
     }
 }

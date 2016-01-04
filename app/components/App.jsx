@@ -20,8 +20,10 @@ let App = React.createClass({
         return (
             <div className="container">
                 <Header />
-                {React.cloneElement(this.props.children, {recipeData: this.data.recipes })}
-                <Footer />
+                <div className="GridWrapper">
+                    {React.cloneElement(this.props.children, {recipeData: this.data.recipes })}
+                    <Footer />
+                </div>
             </div>
         );
     }

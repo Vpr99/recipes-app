@@ -1,8 +1,8 @@
 /* Settings: Global project settings & configurations */
 /*@import 'settings/colors';
 @import 'settings/fonts';
-@import 'settings/global';
-@import 'settings/grid';*/
+@import 'settings/global'; */
+@import 'settings/grid';
 
 /* Tools: Globally available tools, helpers & mixins */
 /*@import 'tools/mixins';
@@ -24,6 +24,7 @@
 @import '../components/Header/Header.css';
 @import '../components/Loader/Loader.css';
 @import '../components/RecipeDetail/RecipeDetail.css';
+@import '../components/RecipeList/RecipeList.css';
 @import '../components/RecipeListItem/RecipeListItem.css';
 
 /* Trumps: Overrides, Helpers & Utilities - 1 DOM Element at a time */

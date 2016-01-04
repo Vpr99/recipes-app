@@ -19,11 +19,9 @@ let RecipeList = React.createClass({
         return(
             <div className="RecipeList">
                 {this.data.recipes.map(recipe => (
-                    <div key={recipe.objectId}>
-                        <Link to={`/recipe/${recipe.slug}`}>
+                        <Link to={`/recipe/${recipe.slug}`} key={recipe.objectId}>
                             <RecipeListItem data={recipe} />
                         </Link>
-                    </div>
                 ))}
             </div>
         )

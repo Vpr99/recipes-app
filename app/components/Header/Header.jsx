@@ -1,14 +1,15 @@
 import React from 'react';
 import { IndexRoute, Router, Route, Link } from 'react-router'
 
+var logo = require('./../../images/logo.svg');
+
 let Header = () => {
     return (
         <header className="PageHead">
-            <Link to="/"><h1 className="PageHead-logo">Recipes</h1></Link>
-            {/* <nav className="PageHead-nav">
-                <Link to="/recipe/add">Add Recipe</Link>
-                <Link to="/">Recipes</Link>
-            </nav> */}
+            <Link to="/"><img className="PageHead-logo" src={logo} alt="Recipes" /></Link>
+            <nav className="PageHead-nav">
+                <Link to="/about">About</Link>
+            </nav>
         </header>
     )
 }

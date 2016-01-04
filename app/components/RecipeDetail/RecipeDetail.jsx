@@ -20,7 +20,7 @@ let RecipeDetail = React.createClass({
             /* Process & store recipe steps. */
             var steps = [];
             _.each(recipe  .directions, function(step) {
-                steps.push(<li key={uuid.v4()}>{step}</li>)
+                steps.push(<p className="RecipeDetail-step" key={uuid.v4()}>{step}</p>)
             })
 
             /* Process & store the ingredients. */
@@ -49,20 +49,22 @@ let RecipeDetail = React.createClass({
 
                 /* Add the ingredient to the array */
                 ingredients.push(
-                    <li key={uuid.v4()}>{fractionQuantity} {ingredient.unit} {ingredient.ingredient_name}{ingredientInstruction}</li>
+                    <li className="RecipeDetail-ingredient" key={uuid.v4()}><span className="RecipeDetail-ingredient--quantity">{fractionQuantity} {ingredient.unit}</span> {ingredient.ingredient_name}{ingredientInstruction}</li>
                 )
 
             })
 
             content = (
                 <div className="RecipeDetail">
-                    <h2 className="RecipeDetail-title">{recipe.recipe_name}</h2>
-                    <div className="RecipeDetail-meta">
-                        <p className="RecipeDetail-servings">Servings: {recipe.servings}</p>
-                        <p className="RecipeDetail-time">Time Taken: {recipe.time}</p>
+                    <h1 className="RecipeDetail-title">{recipe.recipe_name}</h1>
+                    <div className="RecipeDetail-left">
+                        <p className="RecipeDetail-meta RecipeDetail-meta--servings">Servings: {recipe.servings}</p>
+                        <p className="RecipeDetail-meta RecipeDetail-meta--time">Time Taken: {recipe.time}</p>
+                        <ul className="RecipeDetail-ingredientList">{ingredients}</ul>
                     </div>
-                    <ul className="RecipeDetail-ingredientList">{ingredients}</ul>
-                    <ol className="RecipeDetail-stepList">{steps}</ol>
+                    <div className="RecipeDetail-stepList">
+                        {steps}
+                    </div>
                 </div>
             )
         }

@@ -1,3 +1,6 @@
 body {
-    font: 1.2rem 'Sorts Mill Goudy', sans-serif;
+    /*lost-utility: edit;*/
+    font-size: 1rem;
+    font-family: system, -apple-system,
+     ".SFNSDisplay-Regular", HelveticaNeue, LucidaGrande;
 }

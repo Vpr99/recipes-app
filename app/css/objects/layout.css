@@ -1,3 +1,4 @@
-.container {
-    lost-center: 980px;
+.GridWrapper {
+    clear: fix;
+    lost-center: 960px;
 }
