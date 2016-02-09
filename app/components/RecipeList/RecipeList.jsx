@@ -11,7 +11,7 @@ let RecipeList = React.createClass({
 
     observe(props, state) {
         return {
-            recipes: new Parse.Query('Recipe').descending('recipe_name')
+            recipes: new Parse.Query('Recipe2').descending('recipe_name')
         };
     },
 

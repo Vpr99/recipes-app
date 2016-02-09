@@ -33,10 +33,10 @@ var RecipeCreator = React.createClass({
 
         if (!value) { console.log("Failed."); }
         else {
-            ParseReact.Mutation.Create('Recipe', {
+            ParseReact.Mutation.Create('Recipe2', {
                 recipe_name: value['recipe_name'],
                 category: value['category'],
-                slug: value['slug'],
+                slug: value['recipe_name'].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'),
                 servings: value['servings'],
                 time: value['time'],
                 ingredients: value['ingredients'],

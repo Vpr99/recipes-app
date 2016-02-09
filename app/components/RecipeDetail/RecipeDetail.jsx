@@ -20,38 +20,15 @@ let RecipeDetail = React.createClass({
             /* Process & store recipe steps. */
             var steps = [];
             _.each(recipe  .directions, function(step) {
-                steps.push(<p className="RecipeDetail-step" key={uuid.v4()}>{step}</p>)
+                steps.push(<li className="RecipeDetail-step" key={uuid.v4()}>{step}</li>)
             })
 
-            /* Process & store the ingredients. */
+            /* Process & store ingredients */
             var ingredients = [];
             _.each(recipe.ingredients, function(ingredient) {
-
-                var ingredientInstruction;
-
-                /* Pluralize ingredients without a unit of measurement */
-                if(!ingredient.unit && ingredient.quantity > 1) {
-                    ingredient.ingredient_name += "s";
-                }
-                /* Then pluralize the remaining ingredients. */
-                else if(ingredient.quantity > 1) {
-                    ingredient.unit = _.pluralize(ingredient.unit);
-                }
-
-                /* Check to see if the ingredient has an optional instruction */
-                if(ingredient.instruction) {
-                    ingredientInstruction = (<span className="Recipe-ingredient--instruction">, {ingredient.instruction}</span>)
-                }
-
-                /* Convert the unit quantity to a fraction */
-                var quantity = new fraction(ingredient.quantity);
-                var fractionQuantity = quantity.toFraction(true);
-
-                /* Add the ingredient to the array */
                 ingredients.push(
-                    <li className="RecipeDetail-ingredient" key={uuid.v4()}><span className="RecipeDetail-ingredient--quantity">{fractionQuantity} {ingredient.unit}</span> {ingredient.ingredient_name}{ingredientInstruction}</li>
+                    <li className="RecipeDetail-ingredient" key={uuid.v4()}><span className="RecipeDetail-ingredient--quantity">{ingredient.quantity}</span> {ingredient.name}</li>
                 )
-
             })
 
             content = (
@@ -62,9 +39,9 @@ let RecipeDetail = React.createClass({
                         <p className="RecipeDetail-meta RecipeDetail-meta--time">Time Taken: {recipe.time}</p>
                         <ul className="RecipeDetail-ingredientList">{ingredients}</ul>
                     </div>
-                    <div className="RecipeDetail-stepList">
+                    <ol className="RecipeDetail-stepList">
                         {steps}
-                    </div>
+                    </ol>
                 </div>
             )
         }
