@@ -1,7 +1,11 @@
 import t from 'tcomb-form';
-import Ingredient from './ingredient.jsx';
 
-module.exports = t.struct({
+var Ingredient = t.struct({
+    quantity: t.Str,
+    name: t.Str
+});
+
+var Recipe = t.struct({
     recipe_name: t.Str,
     category: t.Str,
     servings: t.Str,
@@ -9,3 +13,5 @@ module.exports = t.struct({
     ingredients: t.list(Ingredient),
     directions: t.list(t.Str)
 });
+
+module.exports = Recipe;

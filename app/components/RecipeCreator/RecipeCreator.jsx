@@ -5,8 +5,8 @@ import ParseReact from 'parse-react';
 /* Forms */
 import t from 'tcomb-form';
 var Form = t.form.Form;
-import Recipe from '../../schemas/recipe.jsx';
-import RecipeForm from '../../forms/RecipeForm.jsx';
+import Recipe from '../RecipeForm/RecipeSchema';
+import RecipeForm from '../RecipeForm/RecipeForm';
 
 var RecipeCreator = React.createClass({
     getInitialState: function() {
@@ -15,12 +15,17 @@ var RecipeCreator = React.createClass({
         };
     },
 
+    /* Real-time validation for form fields */
+
+    // onChange: function(value, path) { this.refs.form.getComponent(path).validate(); },
+
     render() {
         // <Form ref="form" type={Recipe} options={RecipeForm} />
+
         return (
             <div>
                 <form className="RecipeCreator RecipeCreator--inline" onSubmit={this.addRecipe}>
-                    <Form ref="form" type={Recipe} />
+                    <Form ref="form" type={Recipe} options={RecipeForm} />
                     <input type="submit" value="Save" />
                 </form>
             </div>
@@ -33,17 +38,19 @@ var RecipeCreator = React.createClass({
 
         if (!value) { console.log("Failed."); }
         else {
-            ParseReact.Mutation.Create('Recipe2', {
-                recipe_name: value['recipe_name'],
-                category: value['category'],
-                slug: value['recipe_name'].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'),
-                servings: value['servings'],
-                time: value['time'],
-                ingredients: value['ingredients'],
-                directions: value['directions']
-            }).dispatch();
-
             console.log("Succeeded.");
+            //console.log(value);
+            // ParseReact.Mutation.Create('Recipe2', {
+            //     recipe_name: value['recipe_name'],
+            //     category: value['category'],
+            //     slug: value['recipe_name'].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'),
+            //     servings: value['servings'],
+            //     time: value['time'],
+            //     ingredients: value['ingredients'],
+            //     directions: value['directions']
+            // }).dispatch();
+
+
 
             /* Empties the form */
             // this.setState({value: null});
