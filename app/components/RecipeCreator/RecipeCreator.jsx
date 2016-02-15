@@ -67,7 +67,6 @@ var RecipeCreator = React.createClass({
                 message: "Success!"
             });
 
-            //console.log(value);
             // ParseReact.Mutation.Create('Recipe2', {
             //     recipe_name: value['recipe_name'],
             //     category: value['category'],

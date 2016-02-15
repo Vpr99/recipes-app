@@ -15,6 +15,7 @@
 /* Elements: Unclassed HTML Elements & Type Selectors */
 /*@import 'elements/page';*/
 @import 'elements/typography';
+@import 'elements/forms';
 
 /* Ojbects: Unstyled Design Patterns */
 @import 'objects/layout';
@@ -24,6 +25,7 @@
 @import '../components/Header/Header.css';
 @import '../components/Loader/Loader.css';
 @import '../components/RecipeDetail/RecipeDetail.css';
+@import '../components/RecipeForm/RecipeForm.css';
 @import '../components/RecipeList/RecipeList.css';
 @import '../components/RecipeListItem/RecipeListItem.css';
 

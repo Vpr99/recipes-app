@@ -44,6 +44,16 @@ var list = function(locals) {
     );
 };
 
+/* Override default inputs to add pretty class names */
+const textbox = t.form.Form.templates.textbox.clone({
+    renderInput: (locals) => {
+        return <input className="Input-textbox" value={locals.value} />
+    },
+    renderLabel: (locals) => {
+        return <label className="Input-label" htmlFor={locals.attrs.id}>{locals.label}</label>
+    }
+});
+
 /* Overridden structure for Ingredients */
 const ingredients = function(locals) {
     var inputs = locals.inputs;
@@ -56,10 +66,11 @@ const ingredients = function(locals) {
 };
 
 module.exports = {
-    auto: 'placeholders',
+    // auto: 'placeholders',
     templates: {
+        list: list,
         struct: struct,
-        list: list
+        textbox: textbox
     },
     fields: {
         directions: {
