@@ -2,6 +2,10 @@ import React from 'react';
 import Parse from 'parse';
 import ParseReact from 'parse-react';
 
+/* Alerts */
+import AlertError from '../AlertError/AlertError';
+import AlertSuccess from '../AlertSuccess/AlertSuccess';
+
 /* Forms */
 import t from 'tcomb-form';
 var Form = t.form.Form;
@@ -11,9 +15,14 @@ import RecipeForm from '../RecipeForm/RecipeForm';
 var RecipeCreator = React.createClass({
     getInitialState: function() {
         return {
-            fileData: ''
+            fileData: '',
+            success: false,
+            error: false,
+            message: ''
         };
     },
+
+
 
     /* Real-time validation for form fields */
 
@@ -22,8 +31,17 @@ var RecipeCreator = React.createClass({
     render() {
         // <Form ref="form" type={Recipe} options={RecipeForm} />
 
+        var alert;
+        if(this.state.success) {
+            alert = <AlertSuccess message={this.state.message} />;
+        }
+        else if(this.state.error) {
+            alert = <AlertError message={this.state.message} />;
+        }
+
         return (
             <div>
+                <div>{alert}</div>
                 <form className="RecipeCreator RecipeCreator--inline" onSubmit={this.addRecipe}>
                     <Form ref="form" type={Recipe} options={RecipeForm} />
                     <input type="submit" value="Save" />
@@ -33,12 +51,22 @@ var RecipeCreator = React.createClass({
     },
 
     addRecipe: function(e) {
-        var value = this.refs.form.getValue();
         e.preventDefault();
+        var value = this.refs.form.getValue();
 
-        if (!value) { console.log("Failed."); }
+        if (!value) {
+            this.setState({
+                error: true,
+                message: "Error."
+
+            });
+        }
         else {
-            console.log("Succeeded.");
+            this.setState({
+                success: true,
+                message: "Success!"
+            });
+
             //console.log(value);
             // ParseReact.Mutation.Create('Recipe2', {
             //     recipe_name: value['recipe_name'],
@@ -55,6 +83,7 @@ var RecipeCreator = React.createClass({
             /* Empties the form */
             // this.setState({value: null});
         }
+
     }
 });
 
