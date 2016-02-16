@@ -3,8 +3,7 @@ import Parse from 'parse';
 import ParseReact from 'parse-react';
 
 /* Alerts */
-import AlertError from '../AlertError/AlertError';
-import AlertSuccess from '../AlertSuccess/AlertSuccess';
+import Alert from '../Alert/Alert';
 
 /* Forms */
 import t from 'tcomb-form';
@@ -33,10 +32,10 @@ var RecipeCreator = React.createClass({
 
         var alert;
         if(this.state.success) {
-            alert = <AlertSuccess message={this.state.message} />;
+            alert = <Alert status="success"  message={this.state.message} />;
         }
         else if(this.state.error) {
-            alert = <AlertError message={this.state.message} />;
+            alert = <Alert status="error" message={this.state.message} />;
         }
 
         return (
@@ -58,13 +57,12 @@ var RecipeCreator = React.createClass({
             this.setState({
                 error: true,
                 message: "Error."
-
             });
         }
         else {
             this.setState({
                 success: true,
-                message: "Success!"
+                message: "Success!",
             });
 
             // ParseReact.Mutation.Create('Recipe2', {

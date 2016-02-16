@@ -1,0 +1,43 @@
+.Input {
+    &-textbox {
+        display: block;
+        margin-bottom: 1rem;
+        padding: 0.625rem;
+        width: 100%;
+    }
+
+    &-label {
+        display: block;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+}
+
+.RecipeForm {
+    lost-utility: clearfix;
+    &-category { lost-column: 8/16; }
+
+    &-servings,
+    &-time { lost-column: 1/4; }
+
+    &-ingredients,
+    &-directions { lost-column: 1/2; }
+}
+
+.FormList {
+    lost-utility: clearfix;
+    &-controls {
+        lost-column: 1/8;
+    }
+    &-add {
+        lost-column: 7/8;
+    }
+}
+
+.FormIngredient {
+    lost-column: 7/8;
+    &-quantity { lost-column: 1/4; }
+    &-name { lost-column: 3/4; }
+}

@@ -1,0 +1,10 @@
+.Alert {
+    background: rgba(249,65,84,0.2);
+    border: 1px solid #F95540;
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding: 0.75rem;
+    text-transform: uppercase;
+}

@@ -1,6 +1,12 @@
 import React from 'react';
-import t from 'tcomb-form';
+import t from 'tcomb-form/lib';
+import i18n from 'tcomb-form/lib/i18n/en';
+import semantic from 'tcomb-form/lib/templates/semantic';
 import Recipe from './RecipeSchema';
+
+/* Declare some global settings for TComb */
+t.form.Form.i18n = i18n;
+t.form.Form.templates = semantic;
 
 /* Global Form Structure */
 var struct = function(locals) {
@@ -13,8 +19,14 @@ var struct = function(locals) {
             <div className="RecipeForm-category">{inputs.category}</div>
             <div className="RecipeForm-servings">{inputs.servings}</div>
             <div className="RecipeForm-time">{inputs.time}</div>
-            <div className="RecipeForm-ingredients">{inputs.ingredients}</div>
-            <div className="RecipeForm-directions">{inputs.directions}</div>
+            <div className="RecipeForm-ingredients">
+                <p className="RecipeForm-sectionTitle">Ingredients</p>
+                {inputs.ingredients}
+            </div>
+            <div className="RecipeForm-directions">
+                <p className="RecipeForm-sectionTitle">Directions</p>
+                {inputs.directions}
+            </div>
         </fieldset>
     );
 };
@@ -31,7 +43,7 @@ var list = function(locals) {
                             <div className="FormList-controls">
                                 {item.buttons.map(function(btn) {
                                     return (
-                                        <button key={btn.label} onClick={btn.click}>{btn.label}</button>
+                                        <button key={btn.label} onClick={btn.click}>X</button>
                                     );
                                 })}
                             </div>

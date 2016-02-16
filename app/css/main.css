@@ -21,6 +21,7 @@
 @import 'objects/layout';
 
 /* Components: Designed & styled pieces of UI */
+@import '../components/Alert/Alert.css';
 @import '../components/Footer/Footer.css';
 @import '../components/Header/Header.css';
 @import '../components/Loader/Loader.css';
