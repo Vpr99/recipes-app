@@ -52,6 +52,7 @@ var RecipeCreator = React.createClass({
     addRecipe: function(e) {
         e.preventDefault();
         var value = this.refs.form.getValue();
+        console.log(value);
 
         if (!value) {
             this.setState({
@@ -60,21 +61,22 @@ var RecipeCreator = React.createClass({
             });
         }
         else {
+
+
+            ParseReact.Mutation.Create('Recipe2', {
+                recipe_name: value['recipe_name'],
+                category: value['category'],
+                slug: value['recipe_name'].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'),
+                servings: value['servings'],
+                time: value['time'],
+                ingredients: value['ingredients'],
+                directions: value['directions']
+            }).dispatch();
+
             this.setState({
                 success: true,
                 message: "Success!",
             });
-
-            // ParseReact.Mutation.Create('Recipe2', {
-            //     recipe_name: value['recipe_name'],
-            //     category: value['category'],
-            //     slug: value['recipe_name'].toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-'),
-            //     servings: value['servings'],
-            //     time: value['time'],
-            //     ingredients: value['ingredients'],
-            //     directions: value['directions']
-            // }).dispatch();
-
 
 
             /* Empties the form */

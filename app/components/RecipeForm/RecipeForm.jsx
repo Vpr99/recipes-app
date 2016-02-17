@@ -58,9 +58,10 @@ var list = function(locals) {
 
 /* Override default inputs to add pretty class names */
 const textbox = t.form.Form.templates.textbox.clone({
-    renderInput: (locals) => {
-        return <input className="Input-textbox" value={locals.value} />
-    },
+    // renderInput: (locals) => {
+    //     console.log(locals);
+    //     return <input id={locals.attrs.id} name={locals.attrs.name} type="text" className="Input-textbox form-control" value={locals.value} />
+    // },
     renderLabel: (locals) => {
         return <label className="Input-label" htmlFor={locals.attrs.id}>{locals.label}</label>
     }

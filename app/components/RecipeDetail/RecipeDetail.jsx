@@ -20,7 +20,7 @@ let RecipeDetail = React.createClass({
             /* Process & store recipe steps. */
             var steps = [];
             _.each(recipe  .directions, function(step) {
-                steps.push(<li className="RecipeDetail-step" key={uuid.v4()}>{step}</li>)
+                steps.push(<li className="RecipeDetail-step" key={uuid.v4()}><p>{step}</p></li>)
             })
 
             /* Process & store ingredients */
